@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descargar Canciones</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+    }
+    .input-container {
+      margin: 20px 0;
+    }
+    label {
+      display: block;
+      margin: 5px 0;
+    }
+    input[type="text"], input[type="button"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    .button {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Descargar Canciones</h1>
+
+  <div class="input-container">
+    <label for="folder">Carpeta de Descarga:</label>
+    <input type="text" id="folder" placeholder="Nombre de la carpeta" />
+  </div>
+
+  <div class="input-container">
+    <label for="songs">Canciones (separadas por coma):</label>
+    <input type="text" id="songs" placeholder="Ej: Eminem - Lose Yourself" />
+  </div>
+
+  <div class="input-container">
+    <label for="zipname">Nombre del ZIP:</label>
+    <input type="text" id="zipname" placeholder="Ej: canciones.zip" />
+  </div>
+
+  <div class="input-container">
+    <input type="button" value="Descargar" class="button" id="downloadBtn" />
+  </div>
+
+  <script>
+    const input = {
+      folder: "songs",
+      songs: "",
+      zipname: "songs.zip",
+    };
+
+    let activeInput = null;
+
+    document.getElementById("downloadBtn").addEventListener("click", function () {
+      input.folder = document.getElementById("folder").value || input.folder;
+      input.songs = document.getElementById("songs").value || input.songs;
+      input.zipname = document.getElementById("zipname").value || input.zipname;
+
+      startDownload();
+    });
+
+    function startDownload() {
+      const folder = input.folder;
+      const zipname = input.zipname;
+      const songs = input.songs.split(",").map(song => song.trim());
+
+      // Crear carpeta (simulación en la web, no es posible hacer esto en iOS ni en navegador)
+      console.log("Carpeta de descarga:", folder);
+
+      // Simulación de descarga (en una app real, aquí podrías llamar un backend con yt-dlp)
+      songs.forEach(song => {
+        console.log("Descargando canción:", song);
+      });
+
+      // Simulación de creación de archivo ZIP (no es posible comprimir archivos en el navegador directamente)
+      console.log("Creando archivo ZIP:", zipname);
+
+      alert(`Descarga completada: ${zipname}`);
+    }
+  </script>
+</body>
+</html>
